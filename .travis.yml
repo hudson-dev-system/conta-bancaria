@@ -1,0 +1,9 @@
+language: java
+jdk:
+  - oraclejdk20
+before_install:
+  - chmod +x mvnw
+services:
+  - docker
+install: true
+script: mvn clean package -DskipTests=true
