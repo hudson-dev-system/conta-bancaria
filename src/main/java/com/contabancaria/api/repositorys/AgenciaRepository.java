@@ -8,4 +8,5 @@ import com.contabancaria.api.entitys.Agencia;
 @Transactional(readOnly = true)
 public interface AgenciaRepository extends JpaRepository<Agencia, Long>{
 	Agencia findByCnpj(String cnpj);
+
 }

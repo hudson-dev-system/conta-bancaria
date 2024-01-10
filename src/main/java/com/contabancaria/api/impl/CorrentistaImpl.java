@@ -21,7 +21,7 @@ public class CorrentistaImpl implements CorrentistaService{
 	
 	@Override
 	public Correntista persistir(Correntista correntista) {
-		log.info("SALVANDO O CORRENTISTA {}:", correntista.toString());
+		log.info("SALVANDO O CORRENTISTA {}:", correntista.getId());
 		return this.correntistaRepository.save(correntista);
 	}
 
@@ -46,6 +46,6 @@ public class CorrentistaImpl implements CorrentistaService{
 	@Override
 	public Optional<Correntista> buscarPorCpfOuEmail(String cpf, String email) {
 		log.info("BUSCANDO CORRENTISTA PELO CPF OU EMAIL {} {}:", cpf, email);
-		return Optional.ofNullable(this.correntistaRepository.fundByCpfOrEmail(cpf, email));
+		return Optional.ofNullable(this.correntistaRepository.findByCpfOrEmail(cpf, email));
 	}
 }

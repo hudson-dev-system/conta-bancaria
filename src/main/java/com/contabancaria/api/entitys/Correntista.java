@@ -48,7 +48,7 @@ public class Correntista implements Serializable{
 	public Correntista(){}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -99,7 +99,6 @@ public class Correntista implements Serializable{
 		return data_atualizacao;
 	}
 
-	@Column(name = "agencia_id", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
 	public Agencia getAgencia() {
 		return agencia;

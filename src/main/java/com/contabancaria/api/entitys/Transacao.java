@@ -36,12 +36,11 @@ public class Transacao implements Serializable{
 	public Transacao() {}
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
 
-	@Column(name = "correntista_id", nullable = false)
 	@ManyToOne(fetch = FetchType.EAGER)
 	public Correntista getCorrentista() {
 		return correntista;

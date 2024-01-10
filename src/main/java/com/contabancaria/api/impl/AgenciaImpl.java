@@ -24,4 +24,22 @@ public class AgenciaImpl implements AgenciaService{
 		log.info("BUSCANDO AGENCIA PELO CNPJ {}:", cnpj);
 		return Optional.ofNullable(this.agenciaRepository.findByCnpj(cnpj));
 	}
+
+	@Override
+	public Agencia persistir(Agencia agencia) {
+		log.info("SALVANDO AGENCIA {} ", agencia.toString());
+		return this.agenciaRepository.save(agencia);
+	}
+
+	@Override
+	public Boolean buscarBooleanPorId(Long id) {
+		log.info("BUSCANDO AGENCIA BOOLEAN PELO ID {} ", id);
+		return this.agenciaRepository.existsById(id);
+	}
+
+	@Override
+	public Optional<Agencia> byId(Long id) {
+		log.info("BUSCANDO AGENCIA PELO ID {} ", id);
+		return Optional.ofNullable(this.agenciaRepository.findById(id).get());
+	}
 }

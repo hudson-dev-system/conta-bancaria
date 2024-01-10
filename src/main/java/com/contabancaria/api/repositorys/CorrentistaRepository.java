@@ -11,5 +11,5 @@ public interface CorrentistaRepository extends JpaRepository<Correntista, Long>{
 	Correntista findByCpf(String cpf);
 	Correntista findByCnpj(String cnpj);
 	Correntista findByEmail(String email);
-	Correntista fundByCpfOrEmail(String cpf, String email);
+	Correntista findByCpfOrEmail(String cpf, String email);
 }
