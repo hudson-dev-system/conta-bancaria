@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 
-public class CorrentistaDTO {
+public class CorrentistaPfDTO {
 	
 	private Long id;
 	private String nome;
@@ -15,7 +15,7 @@ public class CorrentistaDTO {
 	private String saldo;
 	private Long agenciaId;
 	
-	public CorrentistaDTO() {
+	public CorrentistaPfDTO() {
 	}
 
 	public Long getId() {
