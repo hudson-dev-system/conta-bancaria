@@ -26,7 +26,7 @@ import com.contabancaria.api.utils.Response;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(path = "/api/correntista")
+@RequestMapping(path = "/api/correntista/pf")
 public class CorrentistaPfController {
 
 	private final Logger log = LoggerFactory.getLogger(CorrentistaPfController.class);
@@ -37,7 +37,7 @@ public class CorrentistaPfController {
 	@Autowired
 	private AgenciaService agenciaService;
 	
-	@PostMapping(path = "/pf")
+	@PostMapping
 	public ResponseEntity<Response<CorrentistaPfDTO>> cadastro(@Valid @RequestBody CorrentistaPfDTO correntistaPfDTO,
 			BindingResult bindingResult) throws NoSuchElementException{
 		
