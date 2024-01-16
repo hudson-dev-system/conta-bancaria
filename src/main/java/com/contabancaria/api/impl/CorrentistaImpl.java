@@ -48,4 +48,16 @@ public class CorrentistaImpl implements CorrentistaService{
 		log.info("BUSCANDO CORRENTISTA PELO CPF OU EMAIL {} {}:", cpf, email);
 		return Optional.ofNullable(this.correntistaRepository.findByCpfOrEmail(cpf, email));
 	}
+
+	@Override
+	public Correntista buscarPorId(Long id) {
+		log.info("BUSCANDO CORRENTISTA PELO ID: {} ",id);
+		return this.correntistaRepository.findById(id).get();
+	}
+
+	@Override
+	public Boolean buscarPorIdOpt(Long idCorrentista) {
+		log.info("BUSCANDO OPT CORRENTISTA: {} ", idCorrentista);
+		return this.correntistaRepository.existsById(idCorrentista);
+	}
 }

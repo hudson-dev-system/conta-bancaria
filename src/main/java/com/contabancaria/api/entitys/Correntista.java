@@ -165,11 +165,4 @@ public class Correntista implements Serializable{
 		this.data_atualizacao = agora;
 	}
 	
-	@Override
-	public String toString() {
-		return "Correntista [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", cnpj=" + cnpj + ", email=" + email
-				+ ", tipoConta=" + tipoConta + ", saldo=" + saldo + ", data_cadastro=" + data_cadastro
-				+ ", data_atualizacao=" + data_atualizacao + ", agencia=" + agencia + ", transacoes=" + transacoes
-				+ "]";
-	}
 }

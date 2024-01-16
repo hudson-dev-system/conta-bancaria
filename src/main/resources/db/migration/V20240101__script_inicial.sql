@@ -25,6 +25,7 @@ CREATE TABLE transacao(
     id INT NOT NULL IDENTITY,
     correntista_id INT NOT NULL,
     tipo VARCHAR(255) NOT NULL,
+    valor DECIMAL(19,2) NOT NULL,
     data_cadastro DATETIME NOT NULL,
     data_atualizacao DATETIME NOT NULL,
     PRIMARY KEY(id),

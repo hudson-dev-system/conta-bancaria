@@ -1,6 +1,7 @@
 package com.contabancaria.api.entitys;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.contabancaria.api.enums.TipoTransacao;
@@ -30,6 +31,7 @@ public class Transacao implements Serializable{
 	private Long id;
 	private Correntista correntista;
 	private TipoTransacao tipoTransacao;
+	private BigDecimal valor;
 	private Date data_cadastro;
 	private Date data_atualizacao;
 	
@@ -50,6 +52,15 @@ public class Transacao implements Serializable{
 	@Enumerated(EnumType.STRING)
 	public TipoTransacao getTipoTransacao() {
 		return tipoTransacao;
+	}
+	
+	@Column(name = "valor", nullable = false)
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
 	}
 
 	@Column(name = "data_cadastro", nullable = false)

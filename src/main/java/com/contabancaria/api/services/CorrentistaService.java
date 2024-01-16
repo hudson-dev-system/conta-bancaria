@@ -15,4 +15,8 @@ public interface CorrentistaService {
 	Optional<Correntista> buscarPorEmail(String email);
 	
 	Optional<Correntista> buscarPorCpfOuEmail(String cpf, String email);
+	
+	Correntista buscarPorId(Long id);
+
+	Boolean buscarPorIdOpt(Long idCorrentista);
 }
