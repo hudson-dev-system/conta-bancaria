@@ -14,6 +14,7 @@ public class TransacaoDTO {
 	private String tipo;
 	private String valor;
 	private Long idCorrentista;
+	private CorrentistaDTO correntista;
 	
 	public TransacaoDTO() {
 	}
@@ -52,6 +53,14 @@ public class TransacaoDTO {
 
 	public void setIdCorrentista(Long idCorrentista) {
 		this.idCorrentista = idCorrentista;
+	}
+
+	public CorrentistaDTO getCorrentista() {
+		return correntista;
+	}
+
+	public void setCorrentista(CorrentistaDTO correntista) {
+		this.correntista = correntista;
 	}
 
 	@Override

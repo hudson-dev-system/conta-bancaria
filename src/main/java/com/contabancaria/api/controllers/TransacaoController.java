@@ -1,7 +1,6 @@
 package com.contabancaria.api.controllers;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
 
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.contabancaria.api.dto.AgenciaDTO;
+import com.contabancaria.api.dto.CorrentistaDTO;
 import com.contabancaria.api.dto.TransacaoDTO;
 import com.contabancaria.api.entitys.Correntista;
 import com.contabancaria.api.entitys.Transacao;
@@ -53,6 +54,10 @@ public class TransacaoController {
 		
 		Transacao transacao = this.converteDTOtransacao(corr, transacaoDTO, bindingResult);
 		
+		CorrentistaDTO correntistaDTO = this.convertCorrDTO(corr, bindingResult);
+		
+		AgenciaDTO agenciaDTO = this.convertAgenDTO(corr, bindingResult);
+		
 		if(bindingResult.hasErrors()) {
 			log.info("ERROS AO CADASTRAR TRANSACAO.");
 			bindingResult.getAllErrors().forEach(erro -> response.getErros().add(erro.getDefaultMessage()));
@@ -62,10 +67,41 @@ public class TransacaoController {
 		transacao.setCorrentista(corr);
 		
 		this.transacaoService.persistir(transacao);
-		response.setData(this.convertTransacDTO(transacao));
+		TransacaoDTO Tdto = this.convertTransacDTO(transacao);
+		
+		correntistaDTO.setAgenciaDTO(agenciaDTO);
+		
+		Tdto.setCorrentista(correntistaDTO);
+		
+		response.setData(Tdto);
 		
 		
 		return ResponseEntity.ok(response);
+	}
+
+	AgenciaDTO convertAgenDTO(Correntista corr, BindingResult bindingResult) {
+		AgenciaDTO agenciaDTO = new AgenciaDTO();
+		
+		agenciaDTO.setId(corr.getAgencia().getId());
+		agenciaDTO.setDescricao(corr.getAgencia().getDescricao());
+		agenciaDTO.setEndereco(corr.getAgencia().getEndereco());
+		agenciaDTO.setCnpj(corr.getAgencia().getCnpj());
+		
+		return agenciaDTO;
+	}
+
+	CorrentistaDTO convertCorrDTO(Correntista corr, BindingResult bindingResult) {
+		CorrentistaDTO correntistaDTO = new CorrentistaDTO();
+		
+		correntistaDTO.setNome(corr.getNome());
+		correntistaDTO.setCpf(corr.getCpf());
+		corr.getCnpjOpt().ifPresent(
+				cnpj -> correntistaDTO.setCnpj(cnpj));
+		correntistaDTO.setEmail(corr.getEmail());
+		correntistaDTO.setSaldo(corr.getSaldo().toString());
+		correntistaDTO.setCnpjBanco(corr.getAgencia().getCnpj());
+		
+		return correntistaDTO;
 	}
 
 	TransacaoDTO convertTransacDTO(Transacao transacao) {
