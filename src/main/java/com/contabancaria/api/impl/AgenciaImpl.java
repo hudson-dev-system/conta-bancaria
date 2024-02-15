@@ -42,4 +42,10 @@ public class AgenciaImpl implements AgenciaService{
 		log.info("BUSCANDO AGENCIA PELO ID {} ", id);
 		return Optional.ofNullable(this.agenciaRepository.findById(id).get());
 	}
+
+	@Override
+	public void delete(Long id) {
+		log.info("DELETANDO AGENCIA PELO ID:");
+		this.agenciaRepository.deleteById(id);
+	}
 }

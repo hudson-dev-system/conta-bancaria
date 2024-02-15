@@ -4,6 +4,8 @@ package com.contabancaria.api.repositories;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,8 +23,8 @@ public class AgenciaRepositoryTest {
 	
 	private static final String CNPJ = "22984380000189";
 	
-	@Test
-	public void agenciaInsert() {
+	@BeforeEach
+	public void setUp() throws Exception {
 		Agencia agencia = new Agencia();
 		
 		agencia.setCnpj(CNPJ);
@@ -30,6 +32,11 @@ public class AgenciaRepositoryTest {
 		agencia.setEndereco("Endereco de teste.");
 		
 		this.agenciaRepository.save(agencia);
+	}
+	
+	@AfterEach
+	public final void tearDown() {
+		this.agenciaRepository.deleteAll();
 	}
 	
 	@Test

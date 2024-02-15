@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -98,5 +99,25 @@ public class AgenciaController {
 		response.setData(this.convertAgenciaDTO(agencia.get()));
 		
 		return ResponseEntity.ok(response);
+	}
+	
+	@DeleteMapping(path = "/delete/{id}")
+	public ResponseEntity<Response<String>> delete(@PathVariable("id") Long id)
+		throws NoSuchAlgorithmException{
+		
+		log.info("DELETANDO DE CLIENTE DE ID: ", id);
+		
+		Response<String> response = new Response<String>();
+
+		Boolean agExiste = this.agenciaService.buscarBooleanPorId(id);
+		
+		if(!agExiste) {
+			log.info("AGENCIA NÃO LOCALIZADA PARA O ID INFORMADO:");
+			response.getErros().add("Agencia não localizada com o id informado.");
+			return ResponseEntity.badRequest().body(response);
+		}
+		this.agenciaService.delete(id);
+		
+		return ResponseEntity.ok(new Response<String>());
 	}
 }

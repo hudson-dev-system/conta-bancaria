@@ -13,4 +13,6 @@ public interface AgenciaService {
 	Boolean buscarBooleanPorId(Long id);
 	
 	Optional<Agencia> byId(Long id);
+	
+	void delete(Long id);
 }
